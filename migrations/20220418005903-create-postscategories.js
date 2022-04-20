@@ -6,7 +6,7 @@ module.exports = {
       postId: {
         allowNull: false,
         references: {
-          model: 'BlogPost',
+          model: 'BlogPosts',
           key: 'id'
         },
         type: Sequelize.INTEGER
