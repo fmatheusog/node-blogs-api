@@ -6,6 +6,11 @@ const getAll = async (req, res) => {
   return res.status(200).json(users);
 };
 
+const create = async () => {
+  // const { displayName, email, password, image } = req.body;
+};
+
 module.exports = {
   getAll,
+  create,
 };
