@@ -7,7 +7,7 @@ const login = async (email, password) => {
 
   if (!user || user.password !== password) {
     return {
-      message: 'invalid fields',
+      message: 'Invalid fields',
     };
   }
 
