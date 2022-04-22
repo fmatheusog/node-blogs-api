@@ -1,7 +1,7 @@
 const userValidation = require('./userValidation');
-const checkEmailFormat = require('./emailFormatValidation');
+const loginValidation = require('./loginValidation');
 
 module.exports = {
   userValidation,
-  checkEmailFormat,
+  loginValidation,
 };

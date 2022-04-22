@@ -1,10 +1,10 @@
-const { checkEmailFormat } = require('./index');
+const checkEmailFormat = require('./emailFormatValidation');
 
 const nameValidation = (name) => {
   if (name && name.length < 8) {
     return {
       code: 400,
-      message: '"displayname" length must be at least 8 characters long',
+      message: '"displayName" length must be at least 8 characters long',
     };
   }
 
@@ -37,7 +37,7 @@ const passwordValidation = (password) => {
     };
   }
 
-  if (password.lenght !== 6) {
+  if (password.length !== 6) {
     return {
       code: 400,
       message: '"password" length must be 6 characters long',
