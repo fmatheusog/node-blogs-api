@@ -4,7 +4,7 @@ const authentication = (req, res, next) => {
   const token = req.headers.authorization;
 
   if (!token) {
-    return res.status(401).json({ message: 'token not found' });
+    return res.status(401).json({ message: 'Token not found' });
   }
 
   try {
@@ -13,7 +13,7 @@ const authentication = (req, res, next) => {
     req.auth = decoded;
     next();
   } catch (error) {
-    return res.status(401).json({ message: 'expired or invalid token' });
+    return res.status(401).json({ message: 'Expired or invalid token' });
   }
 };
 
