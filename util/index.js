@@ -1,6 +1,6 @@
-const userValidation = require('./userValidation');
-const loginValidation = require('./loginValidation');
-const categoryValidation = require('./categoryValidation');
+const userValidation = require('./validations/userValidation');
+const loginValidation = require('./validations/loginValidation');
+const categoryValidation = require('./validations/categoryValidation');
 
 module.exports = {
   userValidation,
