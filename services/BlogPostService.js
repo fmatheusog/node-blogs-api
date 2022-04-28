@@ -1,22 +1,32 @@
 const { BlogPost, User, Category, PostCategory } = require('../models');
 
+const association = {
+  include: [
+    { 
+      model: User,
+      as: 'user',
+      attributes: { exclude: ['password'] },
+    },
+    {
+      model: Category,
+      as: 'categories',
+      through: { attributes: [] },
+    },
+  ],
+};
+
 const getAll = async () => {
-  const blogposts = await BlogPost.findAll({
-    include: [
-      { 
-        model: User,
-        as: 'user',
-        attributes: { exclude: ['password'] },
-      },
-      {
-        model: Category,
-        as: 'categories',
-        through: { attributes: [] },
-      },
-    ],
-  });
+  const blogposts = await BlogPost.findAll(association);
 
   return blogposts;
+};
+
+const getById = async (id) => {
+  const blogpost = await BlogPost.findAll({ ...association, where: { id } });
+
+  if (blogpost.length === 0) return null;
+
+  return blogpost[0];
 };
 
 const create = async (userId, title, content, categoryIds) => {
@@ -43,5 +53,6 @@ const create = async (userId, title, content, categoryIds) => {
 
 module.exports = {
   getAll,
+  getById,
   create,
 };
