@@ -13,8 +13,10 @@ module.exports = {
       },
       categoryId: {
         allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
+        references: {
+          model: 'Categories',
+          key: 'id'
+        },
         type: Sequelize.INTEGER
       }
     })
