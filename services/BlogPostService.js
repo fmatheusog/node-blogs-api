@@ -22,11 +22,9 @@ const getAll = async () => {
 };
 
 const getById = async (id) => {
-  const blogpost = await BlogPost.findAll({ ...association, where: { id } });
+  const blogpost = await BlogPost.findOne({ ...association, where: { id } });
 
-  if (blogpost.length === 0) return null;
-
-  return blogpost[0];
+  return blogpost;
 };
 
 const create = async (userId, title, content, categoryIds) => {
