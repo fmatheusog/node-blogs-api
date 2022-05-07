@@ -45,7 +45,22 @@ const create = async (userId, title, content, categoryIds) => {
   
     return newPost.id;
   } catch (err) {
-    return { message: 'database error' };
+    console.log('Database error');
+  }
+};
+
+const update = async (userId, postId, post) => {
+  try {
+    const blogpost = await getById(postId);
+
+    if (blogpost.userId !== userId) return false;
+
+    await BlogPost.update(post, { where: { id: postId } });
+    await blogpost.reload();
+
+    return blogpost;
+  } catch (err) {
+    console.log('Database error');
   }
 };
 
@@ -53,4 +68,5 @@ module.exports = {
   getAll,
   getById,
   create,
+  update,
 };

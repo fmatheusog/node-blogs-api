@@ -28,8 +28,19 @@ const create = async (req, res) => {
   });
 };
 
+const update = async (req, res) => {
+  const { title, content } = req.body;
+  const { id } = req.params;
+  const userId = req.auth.id;
+  const updatedPost = await BlogPostService.update(userId, id, { title, content });
+
+  if (updatedPost === false) return res.status(401).json({ message: 'Unauthorized user' });
+  return res.status(200).json(updatedPost);
+};
+
 module.exports = {
   getAll,
   getById,
   create,
+  update,
 };
