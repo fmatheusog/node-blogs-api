@@ -36,4 +36,14 @@ const postValidation = (title, content, categoryIds) => {
   return true;
 };
 
-module.exports = postValidation;
+const postUpdateValidation = (title, content) => {
+  if (validateTitle(title) !== true) return validateTitle(title);
+  if (validateContent(content) !== true) return validateContent(content);
+
+  return true;
+};
+
+module.exports = {
+  postValidation,
+  postUpdateValidation,
+};

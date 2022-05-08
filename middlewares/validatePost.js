@@ -1,5 +1,5 @@
 const CategoryService = require('../services/CategoriesService');
-const { postValidation } = require('../util');
+const { postValidation, postUpdateValidation } = require('../util');
 
 const validatePost = async (req, res, next) => {
   const { title, content, categoryIds } = req.body;
@@ -16,4 +16,22 @@ const validatePost = async (req, res, next) => {
   next();
 };
 
-module.exports = validatePost;
+const validatePostUpdate = async (req, res, next) => {
+  const { title, content, categoryIds } = req.body;
+
+  if (categoryIds) {
+    return res.status(400).json({
+      message: 'Categories cannot be edited',
+    });
+  }
+
+  const valid = postUpdateValidation(title, content);
+  if (valid !== true) return res.status(400).json({ message: valid.message });
+
+  next();
+};
+
+module.exports = {
+  validatePost,
+  validatePostUpdate,
+};
